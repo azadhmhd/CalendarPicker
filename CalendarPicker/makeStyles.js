@@ -177,6 +177,13 @@ export function makeStyles(scaler, backgroundColor, textColor, todayBackgroundCo
       color: '#BBBBBB',
       alignSelf: 'center',
       justifyContent: 'center'
+    },
+
+    yearLabel: {
+      color: #8C94A1;
+      font-size: 11px;
+      letter-spacing: -0.15px;
+      line-height: 13px;
     }
   };
 }

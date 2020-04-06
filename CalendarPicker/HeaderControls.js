@@ -60,7 +60,7 @@ export default function HeaderControls(props) {
       />
       <View>
         <Text style={[styles.monthLabel, textStyle]} {...accessibilityProps}>
-           { month } { year }
+           { month } <Text style={[styles.yearLabel, textStyle]}>{ year }</Text>
         </Text>
       </View>
       <Controls
