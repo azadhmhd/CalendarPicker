@@ -180,10 +180,10 @@ export function makeStyles(scaler, backgroundColor, textColor, todayBackgroundCo
     },
 
     yearLabel: {
-      color: '#8C94A1';
-      font-size: 11px;
-      letter-spacing: -0.15px;
-      line-height: 13px;
+      color: '#8C94A1',
+      fontSize: 11*scaler,
+      letterSpacing: -0.15*scaler,
+      lineHeight: 13*scaler,
     }
   };
 }
