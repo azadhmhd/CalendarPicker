@@ -174,7 +174,7 @@ export function makeStyles(scaler, backgroundColor, textColor, todayBackgroundCo
 
     disabledText: {
       fontSize: 14*scaler,
-      color: '#BBBBBB',
+      color: '#8C94A1',
       alignSelf: 'center',
       justifyContent: 'center'
     },
