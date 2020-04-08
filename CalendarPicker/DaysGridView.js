@@ -40,7 +40,20 @@ export default function DaysGridView(props) {
   } = props;
 
   const today = moment();
-
+  let prevMonthDays;
+  let prevMonthTotalDays;
+  let nextMonthDays;
+  let nextMonthTotalDays;
+  if(month === 11) {
+    nextMonthTotalDays = Utils.getDaysInMonth(0, year+1);
+  } else {
+    nextMonthTotalDays = Utils.getDaysInMonth(month + 1, year);
+  }
+  if(month===0) {
+    prevMonthTotalDays = Utils.getDaysInMonth(month-1, year-1);
+  } else {
+    prevMonthTotalDays = Utils.getDaysInMonth(month-1, year);
+  }
   // let's get the total of days in this month, we need the year as well, since
   // leap years have different amount of days in February
   const totalDays = Utils.getDaysInMonth(month, year);
@@ -55,18 +68,32 @@ export default function DaysGridView(props) {
 
   // fill up an array of days with the amount of days in the current month
   const days = Array.apply(null, {length: totalDays}).map(Number.call, Number);
-
+  prevMonthDays =  Array.apply(null, {length: prevMonthTotalDays}).map(Number.call, Number);
+  nextMonthDays =  Array.apply(null, {length: nextMonthTotalDays}).map(Number.call, Number);
   // 7 days in a week.
   const dayArray = [ 0, 1, 2, 3, 4, 5, 6 ];
+  let lastCol;
+  let firstCol;
 
   // There can be 4 to 6 rows of weeks in a month.
   const weekArray = [ 0, 1, 2, 3, 4, 5 ];
 
   // Get the starting index, based upon whether we are using monday or sunday as first day.
   const startIndex = (startFromMonday ? firstWeekDay - 1 : firstWeekDay) % 7;
-
   function generateDatesForWeek(i) {
+    let count = startIndex;
+    let endIndex;
     return dayArray.map(dayIndex => {
+      if(dayIndex === 6 || ((days.length - 1) === 0)){
+        lastCol = true;
+      } else {
+        lastCol = false;
+      }
+      if(dayIndex === 0 || (days.length === totalDays)) {
+        firstCol = true;
+      } else {
+        firstCol = false;
+      }
       if (i === 0) { // for first row, let's start showing the days on the correct weekday
         if (dayIndex >= startIndex) {
           if (days.length > 0) {
@@ -78,6 +105,8 @@ export default function DaysGridView(props) {
                 month={month}
                 year={year}
                 styles={styles}
+                lastCol={lastCol}
+                firstCol={firstCol}
                 onPressDay={onPressDay}
                 selectedStartDate={selectedStartDate}
                 selectedEndDate={selectedEndDate}
@@ -100,15 +129,47 @@ export default function DaysGridView(props) {
             );
           }
         } else {
+          const day = prevMonthDays[prevMonthDays.length - count] + 1;
+          count = count - 1;
           return (
-            <EmptyDay
-              key={uuid()}
-              styles={styles}
-            />
+            <Day
+                key={day}
+                day={day}
+                month={month}
+                year={year}
+                styles={styles}
+                lastCol={lastCol}
+                firstCol={firstCol}
+                outOfMonth={true}
+                onPressDay={onPressDay}
+                selectedStartDate={selectedStartDate}
+                selectedEndDate={selectedEndDate}
+                allowRangeSelection={allowRangeSelection}
+                minDate={minDate}
+                maxDate={maxDate}
+                disabledDates={disabledDates}
+                disabledDatesTextStyle={disabledDatesTextStyle}
+                minRangeDuration={minRangeDuration}
+                maxRangeDuration={maxRangeDuration}
+                textStyle={textStyle}
+                todayTextStyle={todayTextStyle}
+                selectedDayStyle={selectedDayStyle}
+                selectedRangeStartStyle={selectedRangeStartStyle}
+                selectedRangeStyle={selectedRangeStyle}
+                selectedRangeEndStyle={selectedRangeEndStyle}
+                customDatesStyles={customDatesStyles}
+                enableDateChange={enableDateChange}
+              />
           );
         }
       } else {
         if (days.length > 0) {
+          endIndex = dayIndex;
+          if(dayIndex === 6 || ((days.length - 1) === 0)){
+            lastCol = true;
+          } else {
+            lastCol = false;
+          }
           const day = days.shift() + 1;
           return (
             <Day
@@ -117,6 +178,8 @@ export default function DaysGridView(props) {
               month={month}
               year={year}
               styles={styles}
+              firstCol={firstCol}
+              lastCol={lastCol}
               onPressDay={onPressDay}
               selectedStartDate={selectedStartDate}
               selectedEndDate={selectedEndDate}
@@ -137,6 +200,40 @@ export default function DaysGridView(props) {
               enableDateChange={enableDateChange}
             />
           );
+        } else {
+          if(endIndex < 7) {
+            const day = nextMonthDays.shift() + 1;
+            return (
+              <Day
+                key={day}
+                day={day}
+                month={month}
+                year={year}
+                styles={styles}
+                lastCol={lastCol}
+                firstCol={firstCol}
+                outOfMonth={true}
+                onPressDay={onPressDay}
+                selectedStartDate={selectedStartDate}
+                selectedEndDate={selectedEndDate}
+                allowRangeSelection={allowRangeSelection}
+                minDate={minDate}
+                maxDate={maxDate}
+                disabledDates={disabledDates}
+                disabledDatesTextStyle={disabledDatesTextStyle}
+                minRangeDuration={minRangeDuration}
+                maxRangeDuration={maxRangeDuration}
+                textStyle={textStyle}
+                todayTextStyle={todayTextStyle}
+                selectedDayStyle={selectedDayStyle}
+                selectedRangeStartStyle={selectedRangeStartStyle}
+                selectedRangeStyle={selectedRangeStyle}
+                selectedRangeEndStyle={selectedRangeEndStyle}
+                customDatesStyles={customDatesStyles}
+                enableDateChange={enableDateChange}
+              />
+            );
+          }
         }
       }
     });

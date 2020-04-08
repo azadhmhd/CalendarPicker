@@ -23,8 +23,10 @@ export function makeStyles(scaler, backgroundColor, textColor, todayBackgroundCo
 
   return {
     calendar: {
-      height: 320*scaler,
-      marginTop: 10*scaler
+      minHeight: 220*scaler,
+      width: 343*scaler,
+      marginTop: 25*scaler,
+      marginBottom: 15*scaler,
     },
 
     dayButton: {
@@ -47,8 +49,6 @@ export function makeStyles(scaler, backgroundColor, textColor, todayBackgroundCo
 
     dayLabelsWrapper: {
       flexDirection: 'row',
-      borderBottomWidth: 1,
-      borderTopWidth: 1,
       paddingTop: 10*scaler,
       paddingBottom: 10*scaler,
       alignSelf: 'center',
@@ -59,7 +59,10 @@ export function makeStyles(scaler, backgroundColor, textColor, todayBackgroundCo
 
     daysWrapper: {
       alignSelf: 'center',
-      justifyContent: 'center'
+      justifyContent: 'center',
+      color: '#333333',
+      fontSize: 14*scaler,
+      fontWeight: '500',
     },
 
     dayLabels: {
@@ -81,6 +84,32 @@ export function makeStyles(scaler, backgroundColor, textColor, todayBackgroundCo
       backgroundColor: SELECTED_BG_COLOR,
     },
 
+    todayStyle: {
+      height: 4*scaler,
+      width: 4*scaler,
+      backgroundColor: '#FF9382',
+      borderRadius: 2,
+      alignSelf: 'center',
+      position: 'absolute',
+      top: 35,
+    },
+
+    selectedDayTextStyle: {
+      color: '#3D8DF5',
+      fontSize: 14*scaler,
+      fontWeight: '500',
+    },
+
+    lastCol : {
+      borderTopRightRadius: 6*scaler,
+      borderBottomRightRadius: 6*scaler,
+    },
+
+    firstCol: {
+      borderTopLeftRadius: 6*scaler,
+      borderBottomLeftRadius: 6*scaler,
+    },
+
     selectedToday: {
       width: 30*scaler,
       height:30*scaler,
@@ -93,14 +122,14 @@ export function makeStyles(scaler, backgroundColor, textColor, todayBackgroundCo
     dayWrapper: {
       alignItems: 'center',
       justifyContent: 'center',
-      width: 50*scaler,
+      width: 49*scaler,
       height: 40*scaler,
       backgroundColor: 'rgba(0,0,0,0.0)'
     },
 
     startDayWrapper: {
       width: 50*scaler,
-      height: 30*scaler,
+      height: 35*scaler,
       borderTopLeftRadius: 20*scaler,
       borderBottomLeftRadius: 20*scaler,
       backgroundColor: SELECTED_BG_COLOR,
@@ -110,7 +139,7 @@ export function makeStyles(scaler, backgroundColor, textColor, todayBackgroundCo
 
     endDayWrapper: {
       width: 50*scaler,
-      height: 30*scaler,
+      height: 35*scaler,
       borderTopRightRadius: 20*scaler,
       borderBottomRightRadius: 20*scaler,
       backgroundColor: SELECTED_BG_COLOR,
@@ -119,34 +148,33 @@ export function makeStyles(scaler, backgroundColor, textColor, todayBackgroundCo
     },
 
     inRangeDay: {
-      width: 50*scaler,
-      height: 30*scaler,
+      width: 49*scaler,
+      height: 35*scaler,
       backgroundColor: SELECTED_BG_COLOR,
       alignSelf: 'center',
       justifyContent: 'center'
     },
 
     monthLabel: {
-      fontSize: 16*scaler,
-      color: '#000',
-      marginBottom: 10*scaler,
+      fontSize: 18*scaler,
       width: 180*scaler,
-      textAlign: 'center'
+      textAlign: 'center',
+      color: '#333333',
+      fontWeight: '500',
+      letterSpacing: -0.24,
+      lineHeight: 22,
+      marginBottom: 15*scaler,
     },
 
     headerWrapper: {
-      alignItems: 'center',
+      alignItems: 'flex-start',
       flexDirection: 'row',
-      alignSelf: 'center',
-      padding: 5*scaler,
-      paddingBottom: 3*scaler,
+      alignSelf: 'flex-start',
       backgroundColor: 'rgba(0,0,0,0.0)'
     },
 
     monthSelector: {
-      marginBottom: 10*scaler,
       fontSize: 14*scaler,
-      width: 80*scaler
     },
 
     prev: {
@@ -184,6 +212,17 @@ export function makeStyles(scaler, backgroundColor, textColor, todayBackgroundCo
       fontSize: 11*scaler,
       letterSpacing: -0.15*scaler,
       lineHeight: 13*scaler,
+      fontWeight: '400',
+      paddingLeft: 5*scaler,
+    },
+
+    seprator : {
+      height: 1*scaler,
+      backgroundColor: '#E0E4E880',
+    },
+
+    disabledTextStyle: {
+      color: '#DBDEE3',
     }
   };
 }
