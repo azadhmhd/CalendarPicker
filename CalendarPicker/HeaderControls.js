@@ -51,25 +51,11 @@ export default function HeaderControls(props) {
 
   return (
     <View style={styles.headerWrapper}>
-      <Controls
-        disabled={disablePreviousMonth}
-        label={previous}
-        onPressControl={onPressPrevious}
-        styles={[styles.monthSelector, styles.prev]}
-        textStyles={[textStyle, previousTitleStyle]}
-      />
       <View>
         <Text style={[styles.monthLabel, textStyle]} {...accessibilityProps}>
            { month } <Text style={[styles.yearLabel, textStyle]}>{ year }</Text>
         </Text>
       </View>
-      <Controls
-        disabled={disableNextMonth}
-        label={next}
-        onPressControl={onPressNext}
-        styles={[styles.monthSelector, styles.next]}
-        textStyles={[textStyle, nextTitleStyle]}
-      />
     </View>
   );
 }

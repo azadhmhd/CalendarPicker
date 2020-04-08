@@ -285,7 +285,6 @@ export default class CalendarPicker extends Component {
   handleOnPressPrevious_second() {
     let { next_Month, next_Year } = this.state;
     let previousMonth = next_Month - 1;
-    console.log('azad')
     // if previousMonth is negative it means the current month is January,
     // so we have to go back to previous year and set the current month to December
     if (previousMonth < 0) {
@@ -541,6 +540,8 @@ export default class CalendarPicker extends Component {
             selectedRangeEndStyle={selectedRangeEndStyle}
             customDatesStyles={tempCustomDatesStyles}
           />
+        </View>
+        <View style={styles.seprator}>
         </View>
         <View style={styles.calendar}>
           <HeaderControls
