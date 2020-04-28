@@ -91,7 +91,7 @@ export function makeStyles(scaler, backgroundColor, textColor, todayBackgroundCo
       borderRadius: 2,
       alignSelf: 'center',
       position: 'absolute',
-      top: 35,
+      top: 30*scaler,
     },
 
     selectedDayTextStyle: {
