@@ -23,10 +23,10 @@ export function makeStyles(scaler, backgroundColor, textColor, todayBackgroundCo
 
   return {
     calendar: {
-      minHeight: 220*scaler,
+      minHeight: 200*scaler,
       width: 343*scaler,
-      marginTop: 25*scaler,
-      marginBottom: 15*scaler,
+      marginTop: 20*scaler,
+      marginBottom: 10*scaler,
     },
 
     dayButton: {
@@ -163,7 +163,7 @@ export function makeStyles(scaler, backgroundColor, textColor, todayBackgroundCo
       fontWeight: '500',
       letterSpacing: -0.24,
       lineHeight: 22,
-      marginBottom: 15*scaler,
+      marginBottom: 10*scaler,
     },
 
     headerWrapper: {
